@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+  
+  <response dn="PLMN/RNC-1">
+    <status type="Ongoing" progress="69">
+      <text>Still going</text>
+    </status>
+    <status type="Successfull" progress="100">
+      <text>Everything's fine</text>
+    </status>
+  </response>
+
+</config>
+
