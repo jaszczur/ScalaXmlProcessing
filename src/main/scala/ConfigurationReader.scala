@@ -6,6 +6,7 @@ object Status extends Enumeration {
   val Ongoing = Value("Ongoing")
   val Successfull = Value("Successfull")
   val Failed = Value("Failed")
+  val Undefined = Value("Undefined")
 }
 import Status._
 

@@ -2,12 +2,25 @@
 <config>
   
   <response dn="PLMN/RNC-1">
+    <status>
+      <text>Just started</text>
+    </status>
     <status type="Ongoing" progress="69">
       <text>Still going</text>
     </status>
     <status type="Successfull" progress="100">
       <text>Everything's fine</text>
     </status>
+  </response>
+  
+  <response dn="PLMN/RNC-1">
+    <status>
+      <text>Shouldn't be used</text>
+    </status>
+  </response>
+  
+  <response dn="PLMN/RNC-2">
+    <status type="Failed" progress="100"/>
   </response>
 
 </config>

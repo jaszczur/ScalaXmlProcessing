@@ -10,7 +10,7 @@ class XmlConfigurationReader(val file : String) extends ConfigurationReader {
     val responses = (conf \ "response") filter { n => (n \ "@dn").toString.equals(elem.value) }
     (responses.head \ "status" ) map {statusElem =>
       Response(
-        Status.withName(getOrDefault(statusElem \ "@type", "")),
+        Status.withName(getOrDefault(statusElem \ "@type", "Undefined")),
         getOrDefault(statusElem \ "@progress", "0").toInt, 
         getOrDefault(statusElem \ "text", "")
       )
