@@ -9,12 +9,18 @@ class XmlConfigurationReader(val file : String) extends ConfigurationReader {
   def getResponsesFor(elem : DistinguishedName) : Seq[Response] = {
     val responses = (conf \ "response") filter { n => (n \ "@dn").toString.equals(elem.value) }
     (responses.head \ "status" ) map {statusElem =>
-      println((statusElem \ "@type").toString)
       Response(
-        Status.withName((statusElem \ "@type").toString),
-        (statusElem \ "@progress").toString.toInt, 
-        (statusElem \ "text").toString
+        Status.withName(getOrDefault(statusElem \ "@type", "")),
+        getOrDefault(statusElem \ "@progress", "0").toInt, 
+        getOrDefault(statusElem \ "text", "")
       )
     }
   }
+  
+  private def getOrDefault(nodes : NodeSeq, default : String) : String = 
+    if (nodes.isEmpty) {
+      default
+    } else {
+      nodes.foldLeft("") { (all, node) => all + node.text }
+    }
 }
