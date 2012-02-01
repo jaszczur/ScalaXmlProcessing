@@ -6,8 +6,8 @@ class XmlConfigurationReader(val file : String) extends ConfigurationReader {
   val conf = XML.loadFile(file)
   
 
-  def getResponsesFor(elem : DistinguishedName) : Seq[Response] = {
-    val responses = (conf \ "response") filter { n => (n \ "@dn").toString.equals(elem.value) }
+  def getResponsesFor(dn : DistinguishedName) : Seq[Response] = {
+    val responses = (conf \ "response") filter { n => (n \ "@dn").toString.equals(dn.value) }
     (responses.head \ "status" ) map {statusElem =>
       Response(
         Status.withName(getOrDefault(statusElem \ "@type", "Undefined")),
@@ -21,6 +21,6 @@ class XmlConfigurationReader(val file : String) extends ConfigurationReader {
     if (nodes.isEmpty) {
       default
     } else {
-      nodes.foldLeft("") { (all, node) => all + node.text }
+      nodes.foldLeft("") { (result, node) => result + node.text }
     }
 }
