@@ -1,6 +1,6 @@
 ### Running
 
-sbt run
+    sbt run
 
 ### Sample output
 
